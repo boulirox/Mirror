@@ -72,12 +72,24 @@
     The Mirror programming language powered by programming by example and AI.
 </p>
 
-<input type="text" class="textbox" id="api-key" placeholder="Your throwaway OpenAI API key">
+<input type="text" class="textbox" id="api-key" 
+       placeholder="Your throwaway OpenAI API key"
+       value="">
 
 <div class="editor-container">
     <div id="editor-source" class="editor"></div>
     <div id="editor-intermediate" class="editor"></div>
 </div>
+
+<select name="langages" id="langages">
+    <option value="Javascript">Javascript</option>
+    <option value="Python">Python</option>
+    <option value="cs">C#</option>
+    <option value="C">C</option>
+    <option value="Java">Java</option>
+    <option value="Powershell">Powershell</option>
+    <option value="Arduino">Arduino</option>
+</select>
 
 <div class="button-container">
     <button id="button-compile">Compile</button>
@@ -130,6 +142,10 @@ bar(foo(123, 3))`;
 
     // Compile button action.
     document.getElementById("button-compile").addEventListener("click", async function() {
+
+        var cboLanguages = document.getElementById("langages");
+        var selectedLanguage = cboLanguages.options[cboLanguages.selectedIndex].text;
+
         const apiKey = document.getElementById("api-key").value;
         if (!apiKey) {
             document.getElementById("status").textContent = "Status: Enter your OpenAI API key."
@@ -170,7 +186,8 @@ bar(foo(123, 3))`;
 
         // Compile!
         const compiler = new MirrorCompiler();
-        const prompt = "I want you to generate the function body in JavaScript for the function signature that I give you. I will also give you several examples of inputs with the expected results. Do not use any additional libraries. Do not give any explanation. Do not format it as Markdown. Only give the function and the function call expressions afterwards if applicable.\n\n" + reorganizedASToutput + "\n\n" + expressionsoutput;
+        //const prompt = "I want you to generate the function body in JavaScript for the function signature that I give you. I will also give you several examples of inputs with the expected results. Do not use any additional libraries. Do not give any explanation. Do not format it as Markdown. Only give the function and the function call expressions afterwards if applicable.\n\n" + reorganizedASToutput + "\n\n" + expressionsoutput;
+        const prompt = "I want you to generate the function body in " + selectedLanguage + " for the function signature that I give you. I will also give you several examples of inputs with the expected results. Do not use any additional libraries. Do not give any explanation. Do not format it as Markdown. Only give the function and the function call expressions afterwards if applicable.\n\n" + reorganizedASToutput + "\n\n" + expressionsoutput;
         // TODO: This really should make separate calls to OpenAI to generate each function body. Then our code should emit the JS function signature and use the function body from OpenAI. 
         // TODO: Similarly, the function call expressions should not go to OpenAI. The parser should have a function to emit them.
 
@@ -190,6 +207,15 @@ bar(foo(123, 3))`;
 
     // Run button action.
     document.getElementById("button-run").addEventListener("click", async function() {
+
+        var cboLanguages = document.getElementById("langages");
+        var selectedLanguage = cboLanguages.options[cboLanguages.selectedIndex].text;
+        if(selectedLanguage != "Javascript")
+        {
+            alert("Run only works with Javascript!");
+            return;
+        }
+
         let jscode = editor2.getValue();
         document.getElementById("output").textContent = eval(jscode);
         document.getElementById("status").textContent = "Status: Executed successfully!";

@@ -76,7 +76,7 @@ class MirrorParser {
     }
 
     parseType() {
-        if (this.match('string', 'number', 'bool')) {
+        if (this.match('string', 'number', 'bool', 'void')) {
             return this.previous();
         } else if (this.match('list')) {
             this.consume('[');
