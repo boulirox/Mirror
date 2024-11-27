@@ -1,3 +1,8 @@
+fork from [the original project concept]([https://link-url-here.org](https://github.com/AZHenley/Mirror))
+I don't claim any rights on this... I found this project super cool so I had to idea to expands it to be able to work with other programming languages and to also be able to create functions that simply do stuff without returning anything :)
+![mirror_new_features]([http://url/to/img.png](https://raw.githubusercontent.com/boulirox/Mirror/refs/heads/main/mirror_new_features.png))
+
+
 # Mirror: An LLM-powered programming-by-example programming language.
 
 For more details, see the [blog post](https://austinhenley.com/blog/mirrorlang.html).
