@@ -1,6 +1,6 @@
-fork from [the original project concept]([https://github.com/AZHenley/Mirror))
+fork from [the original project concept](https://github.com/AZHenley/Mirror)
 I don't claim any rights on this... I found this project super cool so I had to idea to expands it to be able to work with other programming languages and to also be able to create functions that simply do stuff without returning anything :)
-![mirror_new_features]([https://raw.githubusercontent.com/boulirox/Mirror/refs/heads/main/mirror_new_features.png))
+![mirror_new_features](https://raw.githubusercontent.com/boulirox/Mirror/refs/heads/main/mirror_new_features.png)
 
 
 # Mirror: An LLM-powered programming-by-example programming language.
